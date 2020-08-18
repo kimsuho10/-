@@ -1,18 +1,105 @@
-안녕하세요.
-전기 전자 기계 자동화 컨트롤러 만드는 반도체 업체 입니다
-반도체를 이용해 컴퓨터로 운전 하는 시스템을 개발 하고 있는 업체 입니다
-5v 9v 12v 220v 조립 개발 하고 있습니다
-펌프 전구 모터 등등...
-PWM 완전한 PWM 아니고 반도체를 이용해서 만드는 업체 입니다
-릴레이 스위치 센서 공작기계를 응용해서 만들고 있습니다
-컴퓨터 쿨러도 조립 하고 있습니다
-음성 Node-red/IBM 결합 Google 어시트턴트 이용한 버튼 세계 각국 언어 지원 
-선풍기를 켜라 말하면 진짜로 선풍기가 켜진니다 선풍기를 꺼라 말하면 진짜로
-꺼진 니다 컴퓨터 핸드폰 어스턴트 앱을 사용 
-등등 LED 켜라 꺼라
-아니면 전구를 켜라 꺼라
-또 모터를 켜라 꺼라 등등
-MQTT-fx / SK-telecom 개발한 신에 한수 Pc 환경 네트워크 시스텀 버튼 조작 할수 있게끔
-만든 시스템 입니다
-창고 전구 전기 자동화 시스템 등등...
-소프웨어 개발
+# ioBroker 이미지 for Raspberry Pi2 / 3 / 4 Buster 20191127
+2
+​
+삼
+## Erzeugen einer µ-SD Karte
+4
+Raspberry Pi2, Pi3, Pi3 B + 또는 Pi4에 대한 SD-Karten 이미지를 죽입니다. 
+5
+​
+6
+Raspberry Pi4 mit 4GB RAM erzeugt, sollte aber에 대한 Das Image wurde auf einem 
+7
+auch auf allen genannten laufen. Es ist für 8 GB Karten und größer passend. Eine 16 GB ist jedoch die empfohlene Mindestgröße.
+8
+16GB Karten sind sowieso empfohlen damit nicht immer die selben Zellen beschrieben werden.
+9
+​
+10
+Das Image wird entpackt und anschließend mit Hilfe des Programms Balena Etcher auf die SD-Karte geschrieben. Etcher는 verschiedene Betriebssysteme에 대한 정보를 제공합니다.
+11
+​
+12
+## Bestandteile des 이미지
+13
+Das Image enthält das Raspbian lite, basierend auf Debian 10“Buster”vom 26.09.2019 nach download von http://www.raspberrypi.org/downloads .
+14
+​
+15
+Zusätzlich wurden noch Pakete, die für einige Adapter notwendig sind, installiert.
+16
+​
+17
+Folgender 사용자 ist angelegt :
+18
+​
+19
+* 사용자 : `pi` ,
+20
+* 암호 : `라즈베리`
+21
+​
+22
+Node-js ist in der Version 10.17.0 installiert sowie natürlich iobroker über den installer mit dem js-controller ** v2.1.1 ** nach Stand vom 27.11.2019.
+23
+​
+24
+Es handelt sich um eine ** Minimalinstallation ** , die nur den admin, den Info- und den discovery-Adapter ** enthält.
+25
+Weitere Adapter sowie deren Instanzen müssen noch angelegt und konfiguriert werden.
+26
+​
+27
+Das Anlegen von weiteren Adaptern und deren Instanzen wird [hier] (/tutorial/adapter.md) beschrieben.
+28
+​
+29
+** 힌 웨이스! **
+30
+Die folgende Anleitung wurde nach bestem Wissen mit den Informationen zum Zeitpunkt der Erstellung des Images erstellt. Durch 업데이트 von Paketen oder des
+31
+kann sich da jederzeit etwas ändern.
+32
+​
+33
+Das Image ist für Deutschland lokalisiert. Bei Nutzung in anderen Umgebungen bitte entsprechend anpassen. ( `sudo raspi-config` ; 4.) 현지화 옵션)
+34
+ 
+35
+​
+36
+## Nach dem ersten Start
+37
+Nach dem ersten Starten des Rapberry Pi bitte mit`sudo raspi-config` folgende Einstellungen vornehmen :
+38
+​
+39
+* Punkt 1 : `Change User passwort` (Eigenes Passwort für den User`Pi` vergeben)
+40
+​
+41
+* PUNKT 2 : '네트워크 옵션 -Hostname` (. Namen 데 라즈베리 파이 ggf. ändern Vorgabe 경악 `raspberrypi` )
+42
+wenn der Hostname geändert wird, bitte anschließend in der Konsole im Installationsverzeichnis`iobroker host this` eingeben
+43
+​
+44
+* Punkt 7 : `고급 옵션 – 파일 시스템 확장` (Erweitern des root-filesystems bis zur maximalen Größe der verwendeten SD-Karte)
+45
+​
+46
+* ggf. noch unter Punkt 4 : `현지화 옵션` Anpassungen vornehmen. Die Voreinstellungen gelten für Deutschland
+47
+ 
+48
+​
+49
+ 
+50
+​
+51
+## 시스템 업데이트
+52
+Da zum Zeitpunkt des 다운로드 bereits einige Zeit seit der Erstellung des 이미지 vergangen sein kann, sollte man als erstes das System auf den neuesten Stand bringen.
+53
+​
